@@ -40,7 +40,15 @@ function App() {
         <form onSubmit={handleSubmit}>
           <label>Name</label>
           <input
-            name="name"
+            name="firstName"
+            placeholder="John Doe"
+            onChange={handleChange}
+            required
+          />
+
+          <label>Last Name</label>
+          <input
+            name="lastName"
             placeholder="John Doe"
             onChange={handleChange}
             required
@@ -59,6 +67,15 @@ function App() {
           <input
             name="password"
             type="password"
+            placeholder="••••••••"
+            onChange={handleChange}
+            required
+          />
+
+          <label>Re-Enter Password</label>
+          <input
+            name="reEnterPassword"
+            type="reEnterPassword"
             placeholder="••••••••"
             onChange={handleChange}
             required
