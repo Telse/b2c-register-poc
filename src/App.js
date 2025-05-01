@@ -4,49 +4,48 @@ import "./App.css";
 function App() {
   const [form, setForm] = useState({ name: "", email: "", password: "" });
 
-  const handleChange = (e) => {
+  const handleChange = (e) =>
     setForm({ ...form, [e.target.name]: e.target.value });
-  };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     alert(`Registering user:\n${JSON.stringify(form, null, 2)}`);
   };
 
   return (
-    <div className="page-wrapper">
-      <div className="register-card">
-        <h2 className="title">Create your account</h2>
+    <div className="container">
+      <div className="card">
+        <h1>Create your account</h1>
         <form onSubmit={handleSubmit}>
           <label>Name</label>
           <input
             name="name"
-            onChange={handleChange}
             placeholder="John Doe"
+            onChange={handleChange}
             required
           />
 
-          <label>Email address</label>
+          <label>Email</label>
           <input
             name="email"
-            onChange={handleChange}
             placeholder="you@example.com"
             type="email"
+            onChange={handleChange}
             required
           />
 
           <label>Password</label>
           <input
             name="password"
-            onChange={handleChange}
-            placeholder="Enter password"
             type="password"
+            placeholder="••••••••"
+            onChange={handleChange}
             required
           />
 
           <button type="submit">Register</button>
         </form>
-        <div className="footer-text">Already have an account? Sign in</div>
+        <p className="footnote">Already have an account? Sign in</p>
       </div>
     </div>
   );
