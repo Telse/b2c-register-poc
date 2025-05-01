@@ -1,26 +1,42 @@
 import React, { useState } from "react";
-import "./App.css";
 
 function App() {
-  const [form, setForm] = useState({ name: "", email: "", password: "" });
+  const [form, setForm] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
 
-  const handleChange = (e) =>
+  const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
+    if (form.password !== form.confirmPassword) {
+      alert("Passwords do not match!");
+      return;
+    }
+
+    const payload = {
+      firstName: form.firstName,
+      lastName: form.lastName,
+      email: form.email,
+      password: form.password,
+    };
+
     try {
       const res = await fetch("http://localhost:7072/api/RegisterUserFunction", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(form),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
       });
-  
+
       const result = await res.json();
-  
+
       if (!res.ok) {
         alert(`Registration failed: ${result.error || "Unknown error"}`);
       } else {
@@ -31,59 +47,29 @@ function App() {
       alert("An error occurred while registering.");
     }
   };
-  
 
   return (
     <div className="container">
       <div className="card">
         <h1>Create your account</h1>
         <form onSubmit={handleSubmit}>
-          <label>Name</label>
-          <input
-            name="firstName"
-            placeholder="John Doe"
-            onChange={handleChange}
-            required
-          />
+          <label>First Name</label>
+          <input name="firstName" onChange={handleChange} required />
 
           <label>Last Name</label>
-          <input
-            name="lastName"
-            placeholder="John Doe"
-            onChange={handleChange}
-            required
-          />
+          <input name="lastName" onChange={handleChange} required />
 
           <label>Email</label>
-          <input
-            name="email"
-            placeholder="you@example.com"
-            type="email"
-            onChange={handleChange}
-            required
-          />
+          <input name="email" type="email" onChange={handleChange} required />
 
           <label>Password</label>
-          <input
-            name="password"
-            type="password"
-            placeholder="••••••••"
-            onChange={handleChange}
-            required
-          />
+          <input name="password" type="password" onChange={handleChange} required />
 
-          <label>Re-Enter Password</label>
-          <input
-            name="reEnterPassword"
-            type="reEnterPassword"
-            placeholder="••••••••"
-            onChange={handleChange}
-            required
-          />
+          <label>Re-enter Password</label>
+          <input name="confirmPassword" type="password" onChange={handleChange} required />
 
           <button type="submit">Register</button>
         </form>
-        <p className="footnote">Already have an account? Sign in</p>
       </div>
     </div>
   );
