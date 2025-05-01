@@ -12,7 +12,7 @@
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
   },
-  "homepage": "https://Telse.github.io/<your-repo-name>",
+  "homepage": "https://Telse.github.io/b2c-register-poc",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
