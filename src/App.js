@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 function App() {
   const [form, setForm] = useState({ name: "", email: "", password: "" });
@@ -10,32 +12,34 @@ function App() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     alert(`This would now register: ${JSON.stringify(form, null, 2)}`);
-    // In real app, POST to backend here
+    // In a real app, you'd POST to your backend here
   };
 
   return (
-    <div style={{ padding: "2rem", fontFamily: "Segoe UI, sans-serif" }}>
-      <h1>HELLO WORLD, THIS IS MY CUSTOM REGISTER PAGE</h1>
-      <h2>B2C Custom Registration PoC</h2>
-      <form onSubmit={handleSubmit} style={{ maxWidth: "400px" }}>
-        <div>
-          <label>Name:</label><br />
-          <input name="name" onChange={handleChange} required />
-        </div>
-        <div style={{ marginTop: "1rem" }}>
-          <label>Email:</label><br />
-          <input name="email" onChange={handleChange} required />
-        </div>
-        <div style={{ marginTop: "1rem" }}>
-          <label>Password:</label><br />
-          <input name="password" type="password" onChange={handleChange} required />
-        </div>
-        <button type="submit" style={{ marginTop: "1.5rem" }}>
-          Register
-        </button>
-      </form>
+    <div className="container mt-5">
+      <div className="card p-4 shadow">
+        <h2 className="text-center mb-4">🪄 B2C Custom Registration</h2>
+        <form onSubmit={handleSubmit}>
+          <div className="mb-3">
+            <label className="form-label">Name</label>
+            <input name="name" className="form-control" onChange={handleChange} required />
+          </div>
+          <div className="mb-3">
+            <label className="form-label">Email</label>
+            <input name="email" className="form-control" onChange={handleChange} required />
+          </div>
+          <div className="mb-3">
+            <label className="form-label">Password</label>
+            <input name="password" type="password" className="form-control" onChange={handleChange} required />
+          </div>
+          <button type="submit" className="btn btn-primary w-100">
+            Register
+          </button>
+        </form>
+      </div>
     </div>
   );
+  
 }
 
 export default App;
