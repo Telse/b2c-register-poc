@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import 'bootstrap/dist/css/bootstrap.min.css';
-
+import "./App.css";
 
 function App() {
   const [form, setForm] = useState({ name: "", email: "", password: "" });
@@ -11,35 +10,46 @@ function App() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    alert(`This would now register: ${JSON.stringify(form, null, 2)}`);
-    // In a real app, you'd POST to your backend here
+    alert(`Registering user:\n${JSON.stringify(form, null, 2)}`);
   };
 
   return (
-    <div className="container mt-5">
-      <div className="card p-4 shadow">
-        <h2 className="text-center mb-4">🪄 B2C Custom Registration</h2>
+    <div className="page-wrapper">
+      <div className="register-card">
+        <h2 className="title">Create your account</h2>
         <form onSubmit={handleSubmit}>
-          <div className="mb-3">
-            <label className="form-label">Name</label>
-            <input name="name" className="form-control" onChange={handleChange} required />
-          </div>
-          <div className="mb-3">
-            <label className="form-label">Email</label>
-            <input name="email" className="form-control" onChange={handleChange} required />
-          </div>
-          <div className="mb-3">
-            <label className="form-label">Password</label>
-            <input name="password" type="password" className="form-control" onChange={handleChange} required />
-          </div>
-          <button type="submit" className="btn btn-primary w-100">
-            Register
-          </button>
+          <label>Name</label>
+          <input
+            name="name"
+            onChange={handleChange}
+            placeholder="John Doe"
+            required
+          />
+
+          <label>Email address</label>
+          <input
+            name="email"
+            onChange={handleChange}
+            placeholder="you@example.com"
+            type="email"
+            required
+          />
+
+          <label>Password</label>
+          <input
+            name="password"
+            onChange={handleChange}
+            placeholder="Enter password"
+            type="password"
+            required
+          />
+
+          <button type="submit">Register</button>
         </form>
+        <div className="footer-text">Already have an account? Sign in</div>
       </div>
     </div>
   );
-  
 }
 
 export default App;
