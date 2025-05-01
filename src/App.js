@@ -15,6 +15,7 @@ function App() {
 
   return (
     <div style={{ padding: "2rem", fontFamily: "Segoe UI, sans-serif" }}>
+      <h1>HELLO WORLD, THIS IS MY CUSTOM REGISTER PAGE</h1>
       <h2>B2C Custom Registration PoC</h2>
       <form onSubmit={handleSubmit} style={{ maxWidth: "400px" }}>
         <div>
